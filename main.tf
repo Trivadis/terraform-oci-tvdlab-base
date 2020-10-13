@@ -18,19 +18,45 @@
 # ---------------------------------------------------------------------------
 
 module "tvdlab-vcn" {
-  source                    = "Trivadis/tvdlab-vcn/oci"
-  version                   = "0.0.2"
+  source  = "Trivadis/tvdlab-vcn/oci"
+  version = "1.0.1"
   # provider parameters
-  region                    = var.region
+  region = var.region
+
   # general oci parameters
-  compartment_id            = var.compartment_id
+  compartment_id = var.compartment_id
+  label_prefix   = var.label_prefix
 
   # vcn parameters
-  nat_gateway_enabled       = true
-  internet_gateway_enabled  = true
-  vcn_dns_label             = var.vcn_dns_label
-  vcn_name                  = var.vcn_name
-  vcn_cidr                  = var.vcn_cidr
-  tvd_participants          = var.tvd_participants
+  internet_gateway_enabled = var.internet_gateway_enabled
+  nat_gateway_enabled      = var.nat_gateway_enabled
+  service_gateway_enabled  = var.service_gateway_enabled
+  vcn_name                 = var.vcn_name
+  vcn_cidr                 = var.vcn_cidr
+  tvd_participants         = var.tvd_participants
+  tags                     = var.tags
 }
+
+module "tvdlab-bastion" {
+  source  = "Trivadis/tvdlab-bastion/oci"
+  #source  = "../terraform-oci-tvdlab-bastion"
+  version = "0.1.1"
+  # provider parameters
+  region = var.region
+
+  # general oci parameters
+  compartment_id = var.compartment_id
+  tenancy_ocid   = var.tenancy_ocid
+  label_prefix   = var.label_prefix
+
+  # vcn parameters
+  bastion_enabled          = var.bastion_enabled
+  bastion_dns_registration = var.bastion_dns_registration
+  vcn_name                 = var.vcn_name
+  ssh_public_key           = var.ssh_public_key
+  tvd_participants         = var.tvd_participants
+  bastion_subnet           = module.tvdlab-vcn.public_subnet_id
+  tags                     = var.tags
+}
+
 # --- EOF -------------------------------------------------------------------
