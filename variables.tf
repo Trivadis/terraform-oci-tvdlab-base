@@ -167,6 +167,71 @@ variable "ssh_public_key_path" {
   type        = string
 }
 
+# DB Host Parameter ----------------------------------------------------
+variable "db_host_enabled" {
+  description = "whether to create the compute instance or not."
+  default     = false
+  type        = bool
+}
+
+variable "db_host_name" {
+  description = "Name portion of host"
+  default     = "db"
+  type        = string
+}
+
+variable "db_host_public_ip" {
+  description = "whether to assigne a public IP or not."
+  default     = false
+  type        = bool
+}
+
+variable "db_host_private_ip" {
+  description = "Private IP for host."
+  default     = "10.0.1.6"
+  type        = string
+}
+
+variable "db_host_image_id" {
+  description = "Provide a custom image id for the host or leave as OEL (Oracle Enterprise Linux)."
+  default     = "OEL"
+  type        = string
+}
+
+variable "db_host_os_version" {
+  description = "Define the default OS version for Oracle Linux."
+  default     = "7.8"
+  type        = string
+}
+
+variable "db_host_shape" {
+  description = "The shape of compute instance."
+  default     = "VM.Standard.E2.2"
+  type        = string
+}
+
+variable "db_host_boot_volume_size" {
+  description = "Size of the boot volume."
+  default     = 150
+  type        = number
+}
+
+variable "db_host_state" {
+  description = "Whether the host should be either RUNNING or STOPPED state. "
+  default     = "RUNNING"
+}
+
+variable "db_host_bootstrap" {
+  description = "Bootstrap script."
+  default     = ""
+  type        = string
+}
+
+variable "db_host_subnet" {
+  description = "List of subnets for the hosts"
+  type        = list(string)
+}
+
 # Trivadis LAB specific parameter -------------------------------------------
 variable "tvd_participants" {
     description = "The number of VCNs to create"

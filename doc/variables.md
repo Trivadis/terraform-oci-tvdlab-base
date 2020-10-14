@@ -11,12 +11,15 @@ Variables for the configuration of the terraform module, defined in [variables](
 
 ## General OCI
 
-| Parameter        | Description                                                                           | Values | Default |
-|------------------|---------------------------------------------------------------------------------------|--------|---------|
-| `compartment_id` | OCID of the compartment where to create all resources.                                | OCID   |         |
-| `label_prefix`   | A string that will be prepended to all resources.                                     |        | none    |
-| `resource_name`  | A string to name all resource. If undefined it will be derived from compartment name. |        | n/a     |
-| `tags`           | A simple key-value pairs to tag the resources created.                                |        |         |
+| Parameter             | Description                                                                                      | Values | Default |
+|-----------------------|--------------------------------------------------------------------------------------------------|--------|---------|
+| `compartment_id`      | OCID of the compartment where to create all resources.                                           | OCID   |         |
+| `label_prefix`        | A string that will be prepended to all resources.                                                |        | none    |
+| `resource_name`       | A string to name all resource. If undefined it will be derived from compartment name.            |        | n/a     |
+| `tags`                | A simple key-value pairs to tag the resources created.                                           |        |         |
+| `ssh_public_key_path` | Path to the ssh public key used to access the host. set this or the `ssh_public_key`             |        | n/a     |
+| `ssh_public_key`      | The content of the ssh public key used to access the host. set this or the `ssh_public_key_path` |        | n/a     |
+
 
 ## VCN Variables
 
@@ -43,9 +46,22 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `bastion_os_version`       | Define the default OS version for Oracle Linux. This is used to identify the default `bastion_image_id` |                   | 7.8              |
 | `bastion_shape`            | The shape of bastion instance.                                                                          |                   | VM.Standard.E2.1 |
 | `bastion_state`            | Whether bastion host should be either RUNNING or STOPPED state.                                         | RUNNING / STOPPED | RUNNING          |
-| `ssh_public_key_path`      | Path to the ssh public key used to access the bastion. set this or the `ssh_public_key`                 |                   | n/a              |
-| `ssh_public_key`           | The content of the ssh public key used to access the bastion. set this or the `ssh_public_key_path`     |                   | n/a              |
 
+## DB Host
+
+| Parameter                  | Description                                                                                             | Values            | Default          |
+|----------------------------|---------------------------------------------------------------------------------------------------------|-------------------|------------------|
+| `db_host_bootstrap`        | Bootstrap script to provision the host.                                                                 |                   | n/a              |
+| `db_host_enabled`          | Whether to create the host or not.                                                                      | true/false        | false            |
+| `db_host_image_id`         | Provide a custom image id for the host or leave as OEL (Oracle Enterprise Linux).                       | OCID              | OEL              |
+| `db_host_name`             | A Name portion of host.                                                                                 |                   | db               |
+| `db_host_public_ip`        | whether to assigne a public IP or not.                                                                  | true/false        | false            |
+| `db_host_private_ip`       | Private IP for the host.                                                                                |                   | 10.0.1.6         |
+| `db_host_os_version`       | Define the default OS version for Oracle Linux. This is used to identify the default `db_host_image_id` |                   | 7.8              |
+| `db_host_shape`            | The shape of compute instance.                                                                          |                   | VM.Standard.E2.2 |
+| `db_host_boot_volume_size` | Size of the boot volume.                                                                                |                   | 150              |
+| `db_host_state`            | Whether host should be either RUNNING or STOPPED state.                                                 | RUNNING / STOPPED | RUNNING          |
+| `db_host_subnet`           | List of subnets for the hosts                                                                           |                   | n/a              |
 
 ## Trivadis LAB
 

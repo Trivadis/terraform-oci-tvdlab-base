@@ -38,6 +38,11 @@ module "tvdlab-base" {
   label_prefix        = var.label_prefix
   tags                = var.tags
 
+  # Trivadis LAB specific parameter 
+  tvd_dns_hostnum = var.tvd_dns_hostnum
+  tvd_private_dns = var.tvd_private_dns
+  tvd_public_dns  = var.tvd_public_dns
+
   # VCN Network parameter
   nat_gateway_enabled      = var.nat_gateway_enabled
   internet_gateway_enabled = var.internet_gateway_enabled
@@ -57,12 +62,18 @@ module "tvdlab-base" {
   bastion_bootstrap        = var.bastion_bootstrap
   bastion_state            = var.bastion_state
 
-  # Trivadis LAB specific parameter 
-  tvd_dns_hostnum = var.tvd_dns_hostnum
-  tvd_private_dns = var.tvd_private_dns
-  tvd_public_dns  = var.tvd_public_dns
+  # db host parameters
+  host_enabled          = var.db_host_enabled
+  host_name             = var.db_host_name
+  host_image_id         = var.db_host_image_id
+  host_shape            = var.db_host_shape
+  host_bootstrap        = var.db_host_bootstrap
+  host_state            = var.db_host_state
+  host_public_ip        = var.db_host_public_ip
+  host_private_ip       = var.db_host_private_ip
+  host_os_version       = var.db_host_os_version
+  host_boot_volume_size = var.db_host_boot_volume_size
 }
-
 
 # display public IPs of bastion hosts
 output "bastion_public_ip" {

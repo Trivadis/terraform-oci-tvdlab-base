@@ -50,6 +50,18 @@ bastion_bootstrap           = ""
 ssh_public_key              = ""
 ssh_public_key_path         = ""
 
+# Host Parameter ------------------------------------------------------------
+db_host_enabled              = false
+db_host_name                 = "db"
+db_host_public_ip            = false
+db_host_private_ip           = "10.0.1.6"
+db_host_image_id             = "OEL"
+db_host_os_version           = "7.8"
+db_host_shape                = "VM.Standard.E2.2"
+db_host_boot_volume_size     = 150
+db_host_state                = "RUNNING"
+db_host_bootstrap            = ""
+
 # Trivadis LAB specific parameter -------------------------------------------
 tvd_participants            = 1
 tvd_domain                  = "trivadislabs.com"

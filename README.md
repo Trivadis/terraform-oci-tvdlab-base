@@ -11,6 +11,7 @@ It creates the following resources:
 * An optional NAT gateway
 * An optional service gateway
 * An optional bastion host using [Trivadis/terraform-oci-tvdlab-bastion](https://github.com/Trivadis/terraform-oci-tvdlab-bastion)
+* An optional db host using [Trivadis/terraform-oci-tvdlab-compute](https://github.com/Trivadis/terraform-oci-tvdlab-compute)
 * Optional n-number of base envrionments. This is used to build several identical environments for a training and laboratory environment.
 
 The module can be parametrized by the number of participants. This will then create n times the environment. The following figure shows a VCN with Basion host for the compartment O-SEC. i.e. `resource_name` has been derivated from compartment name.
