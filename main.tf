@@ -17,46 +17,75 @@
 # see git revision history for more information on changes/updates
 # ---------------------------------------------------------------------------
 
+# - ADD VCM Module ----------------------------------------------------------
 module "tvdlab-vcn" {
-  source  = "Trivadis/tvdlab-vcn/oci"
-  version = "1.0.1"
-  # provider parameters
-  region = var.region
+  source = "Trivadis/tvdlab-vcn/oci"
+  #source = "../terraform-oci-tvdlab-vcn"
+  version = "1.1.0"
+
+  # - Mandatory Parameters --------------------------------------------------
+  region         = var.region
+  compartment_id = var.compartment_id
+
+  # - Optional Parameters ---------------------------------------------------
+  # Lab Configuration
+  resource_name    = var.resource_name
+  tvd_domain       = var.tvd_domain
+  tvd_participants = var.tvd_participants
 
   # general oci parameters
-  compartment_id = var.compartment_id
-  label_prefix   = var.label_prefix
+  label_prefix = var.label_prefix
+  tags         = var.tags
 
-  # vcn parameters
-  internet_gateway_enabled = var.internet_gateway_enabled
+  # VCN Network parameter
   nat_gateway_enabled      = var.nat_gateway_enabled
+  internet_gateway_enabled = var.internet_gateway_enabled
   service_gateway_enabled  = var.service_gateway_enabled
-  vcn_name                 = var.vcn_name
   vcn_cidr                 = var.vcn_cidr
-  tvd_participants         = var.tvd_participants
-  tags                     = var.tags
+  private_netnum           = var.private_netnum
+  private_newbits          = var.private_newbits
+  public_netnum            = var.public_netnum
+  public_newbits           = var.public_newbits
+
+  # Trivadis LAB specific parameter 
+  tvd_dns_hostnum = var.tvd_dns_hostnum
+  tvd_private_dns = var.tvd_private_dns
+  tvd_public_dns  = var.tvd_public_dns
 }
 
+# - ADD Bastion Host Module -------------------------------------------------
 module "tvdlab-bastion" {
-  source  = "Trivadis/tvdlab-bastion/oci"
-  #source  = "../terraform-oci-tvdlab-bastion"
-  version = "0.1.1"
-  # provider parameters
-  region = var.region
+  source = "Trivadis/tvdlab-bastion/oci"
+  #source = "../terraform-oci-tvdlab-bastion"
+  version = "1.0.0"
 
+  # - Mandatory Parameters --------------------------------------------------
+  tenancy_ocid        = var.tenancy_ocid
+  region              = var.region
+  compartment_id      = var.compartment_id
+  ssh_public_key      = var.ssh_public_key
+  ssh_public_key_path = var.ssh_public_key_path
+  bastion_subnet      = module.tvdlab-vcn.public_subnet_id
+
+  # - Optional Parameters ---------------------------------------------------
   # general oci parameters
-  compartment_id = var.compartment_id
-  tenancy_ocid   = var.tenancy_ocid
-  label_prefix   = var.label_prefix
+  availability_domain = var.availability_domain
+  label_prefix        = var.label_prefix
+  tags                = var.tags
 
-  # vcn parameters
+  # Lab Configuration
+  resource_name    = var.resource_name
+  tvd_domain       = var.tvd_domain
+  tvd_participants = var.tvd_participants
+
+  # bastion parameters
   bastion_enabled          = var.bastion_enabled
   bastion_dns_registration = var.bastion_dns_registration
-  vcn_name                 = var.vcn_name
-  ssh_public_key           = var.ssh_public_key
-  tvd_participants         = var.tvd_participants
-  bastion_subnet           = module.tvdlab-vcn.public_subnet_id
-  tags                     = var.tags
+  bastion_name             = var.bastion_name
+  bastion_image_id         = var.bastion_image_id
+  bastion_shape            = var.bastion_shape
+  bastion_bootstrap        = var.bastion_bootstrap
+  bastion_state            = var.bastion_state
 }
 
 # --- EOF -------------------------------------------------------------------
