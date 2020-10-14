@@ -92,7 +92,7 @@ module "tvdlab-bastion" {
 # - ADD DB Module -----------------------------------------------------------
 module "tvdlab-db" {
   source  = "Trivadis/tvdlab-compute/oci"
-  version = "0.0.1"
+  version = "0.0.2"
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid   = var.tenancy_ocid
@@ -127,79 +127,4 @@ module "tvdlab-db" {
   host_boot_volume_size = var.db_host_boot_volume_size
 }
 
-# - ADD OUD Module ----------------------------------------------------------
-module "tvdlab-oud" {
-  source  = "Trivadis/tvdlab-compute/oci"
-  version = "0.0.2"
-
-  # - Mandatory Parameters --------------------------------------------------
-  tenancy_ocid   = var.tenancy_ocid
-  region         = var.region
-  compartment_id = var.compartment_id
-  # either ssh_public_key or ssh_public_key_path must be specified
-  ssh_public_key      = var.ssh_public_key
-  ssh_public_key_path = var.ssh_public_key_path
-  host_subnet         = module.tvdlab-vcn.private_subnet_id
-
-  # - Optional Parameters ---------------------------------------------------
-  # general oci parameters
-  availability_domain = var.availability_domain
-  label_prefix        = var.label_prefix
-  tags                = var.tags
-
-  # Lab Configuration
-  resource_name    = var.resource_name
-  tvd_domain       = var.tvd_domain
-  tvd_participants = var.tvd_participants
-
-  # host parameters
-  host_enabled          = var.oud_host_enabled
-  host_name             = var.oud_host_name
-  host_image_id         = var.oud_host_image_id
-  host_shape            = var.oud_host_shape
-  host_bootstrap        = var.oud_host_bootstrap
-  host_state            = var.oud_host_state
-  host_public_ip        = var.oud_host_public_ip
-  host_private_ip       = var.oud_host_private_ip
-  host_os_version       = var.oud_host_os_version
-  host_boot_volume_size = var.oud_host_boot_volume_size
-}
-
-# - ADD AD Module -----------------------------------------------------------
-module "tvdlab-ad" {
-  source  = "Trivadis/tvdlab-compute/oci"
-  version = "0.0.1"
-
-  # - Mandatory Parameters --------------------------------------------------
-  tenancy_ocid   = var.tenancy_ocid
-  region         = var.region
-  compartment_id = var.compartment_id
-  # either ssh_public_key or ssh_public_key_path must be specified
-  ssh_public_key      = var.ssh_public_key
-  ssh_public_key_path = var.ssh_public_key_path
-  host_subnet         = module.tvdlab-vcn.private_subnet_id
-
-  # - Optional Parameters ---------------------------------------------------
-  # general oci parameters
-  availability_domain = var.availability_domain
-  label_prefix        = var.label_prefix
-  tags                = var.tags
-
-  # Lab Configuration
-  resource_name    = var.resource_name
-  tvd_domain       = var.tvd_domain
-  tvd_participants = var.tvd_participants
-
-  # host parameters
-  host_enabled          = var.win_host_enabled
-  host_name             = var.win_host_name
-  host_image_id         = var.win_host_image_id
-  host_shape            = var.win_host_shape
-  host_bootstrap        = var.win_host_bootstrap
-  host_state            = var.win_host_state
-  host_public_ip        = var.win_host_public_ip
-  host_private_ip       = var.win_host_private_ip
-  host_os_version       = var.win_host_os_version
-  host_boot_volume_size = var.win_host_boot_volume_size
-}
 # --- EOF -------------------------------------------------------------------
