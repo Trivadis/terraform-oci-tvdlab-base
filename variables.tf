@@ -7,7 +7,7 @@
 # Editor.....: Stefan Oehrli
 # Date.......: 2020.10.12
 # Revision...: 
-# Purpose....: Variable file for the terraform module tvdlab vcn.
+# Purpose....: Variable file for the terraform module tvdlab base.
 # Notes......: -- 
 # Reference..: --
 # License....: Apache License Version 2.0, January 2004 as shown
@@ -17,31 +17,49 @@
 # see git revision history for more information on changes/updates
 # ---------------------------------------------------------------------------
 
-# provider identity parameters
-variable "region" {
-    # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
-    description = "The OCI region where resources will be created"
-    type        = string
-}
-
-# general oci parameters
-variable "compartment_id" {
-    description = "OCID of the tcompartment where to create all resources"
-    type        = string
-}
-
+# provider identity parameters ----------------------------------------------
 variable "tenancy_ocid" {
-  description = "tenancy id where to create the sources"
+  description = "tenancy id where to create the resources"
+  type        = string
+}
+
+variable "region" {
+  # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
+  description = "The OCI region where resources will be created"
+  type        = string
+}
+
+# general oci parameters ----------------------------------------------------
+variable "compartment_id" {
+  description = "OCID of the compartment where to create all resources"
   type        = string
 }
 
 variable "label_prefix" {
-    description = "A string that will be prepended to all resources"
-    type        = string
-    default     = "none"
+  description = "A string that will be prepended to all resources"
+  type        = string
+  default     = "none"
 }
 
-# vcn parameters
+variable "resource_name" {
+  description = "user-friendly string to name all resource. If undefined it will be derived from compartment name. "
+  type        = string
+  default     = ""
+}
+
+variable "availability_domain" {
+  description = "the AD to place the bastion host"
+  default     = 1
+  type        = number
+}
+
+variable "tags" {
+  description = "A simple key-value pairs to tag the resources created"
+  type        = map(any)
+  default     = {}
+}
+
+# VCN parameters ------------------------------------------------------------
 variable "internet_gateway_enabled" {
     description = "whether to create the internet gateway"
     default     = true
@@ -66,15 +84,36 @@ variable "vcn_cidr" {
     type        = string
 }
 
-variable "vcn_name" {
-    description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
-    type        = string
+# Public Subnet parameters --------------------------------------------------
+variable "public_netnum" {
+  description = "0-based index of the bastion subnet when the VCN's CIDR is masked with the corresponding newbit value."
+  default     = 0
+  type        = number
 }
 
-# Bastion Host Parameter
+variable "public_newbits" {
+  description = "The difference between the VCN's netmask and the desired bastion subnet mask"
+  default     = 8
+  type        = number
+}
+
+# Private Subnet parameters -------------------------------------------------
+variable "private_netnum" {
+  description = "0-based index of the private subnet when the VCN's CIDR is masked with the corresponding newbit value."
+  default     = 1
+  type        = number
+}
+
+variable "private_newbits" {
+  description = "The difference between the VCN's netmask and the desired private subnet mask"
+  default     = 8
+  type        = number
+}
+
+# Bastion Host Parameter ----------------------------------------------------
 variable "bastion_enabled" {
   description = "whether to create the bastion"
-  default     = false
+  default     = true
   type        = bool
 }
 
@@ -91,30 +130,37 @@ variable "bastion_name" {
 }
 
 variable "bastion_image_id" {
-  description = "Provide a custom image id for the bastion host or leave as Autonomous."
-  default     = "Autonomous"
+  description = "Provide a custom image id for the bastion host or leave as OEL (Oracle Enterprise Linux)."
+  default     = "OEL"
+  type        = string
+}
+
+variable "bastion_os_version" {
+  description = "Define the default OS version for Oracle Linux."
+  default     = "7.8"
   type        = string
 }
 
 variable "bastion_shape" {
   description = "The shape of bastion instance."
-  default     = "VM.Standard.E2.2"
+  default     = "VM.Standard.E2.1"
   type        = string
 }
 
-variable "bastion_state" { 
+variable "bastion_state" {
   description = "Whether bastion host should be either RUNNING or STOPPED state. "
-  default = "RUNNING" 
+  default     = "RUNNING"
 }
 
-variable "bastion_upgrade" {
-  description = "Whether to upgrade the bastion host packages after provisioning. It's useful to set this to false during development/testing so the bastion is provisioned faster."
-  default     = false
-  type        = bool
+variable "bastion_bootstrap" {
+  description = "Bootstrap script."
+  default     = ""
+  type        = string
 }
 
 variable "ssh_public_key" {
   description = "the content of the ssh public key used to access the bastion. set this or the ssh_public_key_path"
+  default     = ""
   type        = string
 }
 
@@ -124,53 +170,12 @@ variable "ssh_public_key_path" {
   type        = string
 }
 
-# public/bastion subnet
-variable "public_netnum" {
-  description = "0-based index of the bastion subnet when the VCN's CIDR is masked with the corresponding newbit value."
-  default     = 0
-  type        = number
+variable "bastion_subnet" {
+  description = "List of subnets for the bastion hosts"
+  type        = list(string)
 }
 
-variable "public_newbits" {
-  description = "The difference between the VCN's netmask and the desired bastion subnet mask"
-  default     = 8
-  type        = number
-}
-
-variable "public_dns_label" {
-    description = "A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
-    default     = "public"
-    type        = string
-}
-
-# private subnet
-variable "private_netnum" {
-  description = "0-based index of the private subnet when the VCN's CIDR is masked with the corresponding newbit value."
-  default     = 1
-  type        = number
-}
-
-variable "private_newbits" {
-  description = "The difference between the VCN's netmask and the desired private subnet mask"
-  default     = 8
-  type        = number
-}
-
-variable "private_dns_label" {
-    description = "A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet"
-    default     = "private"
-    type        = string
-}
-
-variable "tags" {
-  description = "simple key-value pairs to tag the resources created"
-  type        = map(any)
-  default = {
-    environment = "dev"
-  }
-}
-
-# Trivadis LAB specific parameter
+# Trivadis LAB specific parameter -------------------------------------------
 variable "tvd_participants" {
     description = "The number of VCNs to create"
     type        = number
