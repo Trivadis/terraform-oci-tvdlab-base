@@ -130,7 +130,7 @@ module "tvdlab-db" {
 # - ADD OUD Module ----------------------------------------------------------
 module "tvdlab-oud" {
   source  = "Trivadis/tvdlab-compute/oci"
-  version = "0.0.1"
+  version = "0.0.2"
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid   = var.tenancy_ocid
