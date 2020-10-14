@@ -13,9 +13,9 @@ It creates the following resources:
 * An optional bastion host using [Trivadis/terraform-oci-tvdlab-bastion](https://github.com/Trivadis/terraform-oci-tvdlab-bastion)
 * Optional n-number of base envrionments. This is used to build several identical environments for a training and laboratory environment.
 
-The module can be parametrized by the number of participants. This will then create n times the environment.
+The module can be parametrized by the number of participants. This will then create n times the environment. The following figure shows a VCN with Basion host for the compartment O-SEC. i.e. `resource_name` has been derivated from compartment name.
 
-![VCN architecture overview](https://github.com/Trivadis/terraform-oci-tvdlab-base/raw/main/doc/images/architecture.png)
+![Base architecture overview](https://github.com/Trivadis/terraform-oci-tvdlab-base/raw/main/doc/images/architecture.png)
 
 ## Prerequisites
 
