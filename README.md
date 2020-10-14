@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A reusable and extensible Terraform module that provisions a Trivadis LAB on Oracle Cloud Infrastructure
+A reusable and extensible Terraform module that provisions a Trivadis LAB on Oracle Cloud Infrastructure.
 
 It creates the following resources:
 

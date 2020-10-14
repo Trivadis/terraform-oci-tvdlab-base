@@ -13,9 +13,6 @@
 # License....: Apache License Version 2.0, January 2004 as shown
 #              at http://www.apache.org/licenses/
 # ---------------------------------------------------------------------------
-# Modified...:
-# see git revision history for more information on changes/updates
-# ---------------------------------------------------------------------------
 
 # provider identity parameters ----------------------------------------------
 variable "tenancy_ocid" {
@@ -168,11 +165,6 @@ variable "ssh_public_key_path" {
   description = "path to the ssh public key used to access the bastion. set this or the ssh_public_key"
   default     = ""
   type        = string
-}
-
-variable "bastion_subnet" {
-  description = "List of subnets for the bastion hosts"
-  type        = list(string)
 }
 
 # Trivadis LAB specific parameter -------------------------------------------

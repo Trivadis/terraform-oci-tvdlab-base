@@ -49,7 +49,6 @@ bastion_state               = "RUNNING"
 bastion_bootstrap           = ""
 ssh_public_key              = ""
 ssh_public_key_path         = ""
-#bastion_subnet 
 
 # Trivadis LAB specific parameter -------------------------------------------
 tvd_participants            = 1

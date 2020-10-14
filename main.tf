@@ -13,9 +13,10 @@
 # License....: Apache License Version 2.0, January 2004 as shown
 #              at http://www.apache.org/licenses/
 # ---------------------------------------------------------------------------
-# Modified...:
-# see git revision history for more information on changes/updates
-# ---------------------------------------------------------------------------
+
+terraform {
+  required_version = ">= 0.13.0"
+}
 
 # - ADD VCM Module ----------------------------------------------------------
 module "tvdlab-vcn" {
