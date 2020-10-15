@@ -146,7 +146,7 @@ variable "bastion_os_version" {
 
 variable "bastion_shape" {
   description = "The shape of bastion instance."
-  default     = "VM.Standard.E2.1"
+  default     = "VM.Standard2.1"
   type        = string
 }
 
@@ -224,7 +224,7 @@ variable "db_host_os_version" {
 
 variable "db_host_shape" {
   description = "The shape of compute instance."
-  default     = "VM.Standard.E2.2"
+  default     = "VM.Standard2.2"
   type        = string
 }
 
