@@ -126,6 +126,7 @@ module "tvdlab-db" {
   host_state            = var.db_host_state
   host_public_ip        = var.db_host_public_ip
   host_private_ip       = var.db_host_private_ip
+  host_os               = var.db_host_os
   host_os_version       = var.db_host_os_version
   host_boot_volume_size = var.db_host_boot_volume_size
 }
