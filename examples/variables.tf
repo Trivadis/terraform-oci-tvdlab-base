@@ -132,6 +132,12 @@ variable "bastion_image_id" {
   type        = string
 }
 
+variable "bastion_os" {
+  description = "Base OS for the bastion host."
+  default     = "Oracle Linux"
+  type        = string
+}
+
 variable "bastion_os_version" {
   description = "Define the default OS version for Oracle Linux."
   default     = "7.8"
@@ -201,6 +207,12 @@ variable "db_host_private_ip" {
 variable "db_host_image_id" {
   description = "Provide a custom image id for the host or leave as OEL (Oracle Enterprise Linux)."
   default     = "OEL"
+  type        = string
+}
+
+variable "db_host_os" {
+  description = "Base OS for the bastion host."
+  default     = "Oracle Linux"
   type        = string
 }
 

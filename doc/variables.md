@@ -44,6 +44,7 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `bastion_enabled`          | Whether to create the bastion host or not.                                                              | true/false        | false            |
 | `bastion_image_id`         | Provide a custom image id for the bastion host or leave as OEL (Oracle Enterprise Linux).                                       | OCID              | OEL              |
 | `bastion_name`             | A Name portion of bastion host.                                                                         |                   | bastion          |
+| `bastion_os`               | Base OS for the bastion host. This is used to identify the default `bastion_image_id`               |                   | Oracle Linux     |
 | `bastion_os_version`       | Define the default OS version for Oracle Linux. This is used to identify the default `bastion_image_id` |                   | 7.8              |
 | `bastion_shape`            | The shape of bastion instance.                                                                          |                   | VM.Standard.E2.1 |
 | `bastion_boot_volume_size` | Size of the boot volume.                                                                             |                   | 50              |
@@ -59,6 +60,7 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `db_host_name`             | A Name portion of host.                                                                                 |                   | db               |
 | `db_host_public_ip`        | whether to assigne a public IP or not.                                                                  | true/false        | false            |
 | `db_host_private_ip`       | Private IP for the host.                                                                                |                   | 10.0.1.6         |
+| `db_host_os`               | Base OS for the host. This is used to identify the default `db_host_image_id`               |                   | Oracle Linux     |
 | `db_host_os_version`       | Define the default OS version for Oracle Linux. This is used to identify the default `db_host_image_id` |                   | 7.8              |
 | `db_host_shape`            | The shape of compute instance.                                                                          |                   | VM.Standard.E2.2 |
 | `db_host_boot_volume_size` | Size of the boot volume.                                                                                |                   | 150              |
