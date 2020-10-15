@@ -46,6 +46,7 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `bastion_name`             | A Name portion of bastion host.                                                                         |                   | bastion          |
 | `bastion_os_version`       | Define the default OS version for Oracle Linux. This is used to identify the default `bastion_image_id` |                   | 7.8              |
 | `bastion_shape`            | The shape of bastion instance.                                                                          |                   | VM.Standard.E2.1 |
+| `bastion_boot_volume_size` | Size of the boot volume.                                                                             |                   | 50              |
 | `bastion_state`            | Whether bastion host should be either RUNNING or STOPPED state.                                         | RUNNING / STOPPED | RUNNING          |
 
 ## DB Host
