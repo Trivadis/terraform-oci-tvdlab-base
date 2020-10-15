@@ -34,7 +34,7 @@ module "tvdlab-base" {
   tvd_participants = var.tvd_participants
 
   # general oci parameters
-  availability_domain = var.availability_domain
+  ad_index            = var.ad_index
   label_prefix        = var.label_prefix
   tags                = var.tags
 

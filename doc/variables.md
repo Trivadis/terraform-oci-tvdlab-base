@@ -19,6 +19,7 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `tags`                | A simple key-value pairs to tag the resources created.                                           |        |         |
 | `ssh_public_key_path` | Path to the ssh public key used to access the host. set this or the `ssh_public_key`             |        | n/a     |
 | `ssh_public_key`      | The content of the ssh public key used to access the host. set this or the `ssh_public_key_path` |        | n/a     |
+| `ad_index`       | The index of the availability domain. This is used to identify the availability_domain place the compute instances. |        | 1       |
 
 
 ## VCN Variables
@@ -80,7 +81,7 @@ Specific parameter to configure the Trivadis LAB environment.
 |-----------------------|------------------------------------------------------------------------------------------------|--------|-----------|
 | `all_protocols`       | All protocols.                                                                                 |        | all       |
 | `anywhere`            | CIDR block for anywhare.                                                                       |        | 0.0.0.0/0 |
-| `availability_domain` | Effective name of the availability domain based on `var.region` and `var.availability_domain`. |        |           |
+| `availability_domain` | Effective name of the availability domain based on `var.region` and `var.ad_index`. |        |           |
 | `bastion_image_id`    | Tenancy OCID where to create the resources. Required when configuring provider.                |        |           |
 | `default_private_dns` | Default private DNS. IP address is derivated from `var.vcn_cidr` and `var.tvd_dns_hostnum`.    |        | 10.0.1.4  |
 | `icmp_protocol`       | Number for the ICMP protocol.                                                                  |        | 1         |
