@@ -61,7 +61,6 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `db_host_shape`            | The shape of compute instance.                                                                          |                   | VM.Standard.E2.2 |
 | `db_host_boot_volume_size` | Size of the boot volume.                                                                                |                   | 150              |
 | `db_host_state`            | Whether host should be either RUNNING or STOPPED state.                                                 | RUNNING / STOPPED | RUNNING          |
-| `db_host_subnet`           | List of subnets for the hosts                                                                           |                   | n/a              |
 
 ## Trivadis LAB
 

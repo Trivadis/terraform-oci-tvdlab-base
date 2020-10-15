@@ -227,11 +227,6 @@ variable "db_host_bootstrap" {
   type        = string
 }
 
-variable "db_host_subnet" {
-  description = "List of subnets for the hosts"
-  type        = list(string)
-}
-
 # Trivadis LAB specific parameter -------------------------------------------
 variable "tvd_participants" {
     description = "The number of VCNs to create"

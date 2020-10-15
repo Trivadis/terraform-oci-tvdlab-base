@@ -79,11 +79,11 @@ output "bastion_dns_records" {
 # display public IPs
 output "host_id" {
   description = "OCID of the server instances."
-  value = module.tvdlab-compute.host_id
+  value = module.tvdlab-db.host_id
 }
 
 output "host_public_ip" {
   description = "The public IP address of the server instances."
-  value = module.tvdlab-compute.host_public_ip
+  value = module.tvdlab-db.host_public_ip
 }
 # --- EOF -------------------------------------------------------------------
