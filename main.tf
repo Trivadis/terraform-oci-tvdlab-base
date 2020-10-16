@@ -22,7 +22,7 @@ terraform {
 module "tvdlab-vcn" {
   source = "Trivadis/tvdlab-vcn/oci"
   #source = "../terraform-oci-tvdlab-vcn"
-  version = "1.1.0"
+  version = "1.1.1"
 
   # - Mandatory Parameters --------------------------------------------------
   region         = var.region
