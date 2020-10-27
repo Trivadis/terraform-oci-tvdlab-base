@@ -36,7 +36,7 @@ Add the module to the `main.tf` with the mandatory parameter.
 module "tvdlab-base" {
   source = "Trivadis/tvdlab-base/oci"
   #source = "../terraform-oci-tvdlab-base"
-  version = "1.0.0"
+  version = ">= 1.0.0"
 
   # - Mandatory Parameters --------------------------------------------------
   region                = var.region
@@ -52,7 +52,7 @@ To create multiple environments just specify the `tvd_participants` parameter. T
 module "tvdlab-base" {
   source = "Trivadis/tvdlab-base/oci"
   #source = "../terraform-oci-tvdlab-base"
-  version = "1.0.0"
+  version = ">= 1.0.0"
 
   # - Mandatory Parameters --------------------------------------------------
   region                = var.region
