@@ -22,7 +22,7 @@ terraform {
 module "tvdlab-vcn" {
   source = "Trivadis/tvdlab-vcn/oci"
   #source = "../terraform-oci-tvdlab-vcn"
-  version = "1.1.1"
+  version = "1.1.2"
 
   # - Mandatory Parameters --------------------------------------------------
   region         = var.region
@@ -58,7 +58,7 @@ module "tvdlab-vcn" {
 module "tvdlab-bastion" {
   source = "Trivadis/tvdlab-bastion/oci"
   #source = "../terraform-oci-tvdlab-bastion"
-  version = "1.0.3"
+  version = "1.0.4"
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid        = var.tenancy_ocid
@@ -95,7 +95,7 @@ module "tvdlab-bastion" {
 # - ADD DB Module -----------------------------------------------------------
 module "tvdlab-db" {
   source  = "Trivadis/tvdlab-compute/oci"
-  version = "0.0.5"
+  version = "0.0.6"
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid   = var.tenancy_ocid

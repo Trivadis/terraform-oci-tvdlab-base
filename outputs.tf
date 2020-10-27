@@ -66,9 +66,19 @@ output "bastion_id" {
   value = module.tvdlab-bastion.bastion_id
 }
 
+output "bastion_hostname" {
+  description = "The hostname for VNIC's primary private IP of the bastion server instances."
+  value = module.tvdlab-bastion.bastion_hostname
+}
+
 output "bastion_public_ip" {
   description = "The public IP address of the bastion server instances."
   value = module.tvdlab-bastion.bastion_public_ip
+}
+
+output "bastion_private_ip" {
+  description = "The private IP address of the bastion server instances."
+  value = module.tvdlab-bastion.bastion_private_ip
 }
 
 output "bastion_dns_records" {
@@ -76,14 +86,24 @@ output "bastion_dns_records" {
   value = module.tvdlab-bastion.bastion_dns_records
 }
 
-# display public IPs
-output "host_id" {
+# - Provide information on DB module ---------------------------------------
+output "db_host_id" {
   description = "OCID of the server instances."
   value = module.tvdlab-db.host_id
 }
 
-output "host_public_ip" {
+output "db_hostname" {
+  description = "The hostname for VNIC's primary private IP of the server instances."
+  value = module.tvdlab-db.host_name
+}
+
+output "db_host_public_ip" {
   description = "The public IP address of the server instances."
   value = module.tvdlab-db.host_public_ip
+}
+
+output "db_host_private_ip" {
+  description = "The private IP address of the server instances."
+  value = module.tvdlab-db.host_private_ip
 }
 # --- EOF -------------------------------------------------------------------
