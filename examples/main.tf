@@ -5,10 +5,10 @@
 # Name.......: main.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2020.10.12
+# Date.......: 2020.10.14
 # Revision...: 
-# Purpose....: Main file to use terraform module tvdlab vcn.
-# Notes......: -- 
+# Purpose....: Main configuration to build the training environment.
+# Notes......: Define the core resouces using the module tvdlab-base
 # Reference..: --
 # License....: Apache License Version 2.0, January 2004 as shown
 #              at http://www.apache.org/licenses/
@@ -22,7 +22,7 @@ module "tvdlab-base" {
 
   # - Mandatory Parameters --------------------------------------------------
   region              = var.region
-  compartment_id      = var.compartment_id
+  compartment_id      = local.compartment_id
   tenancy_ocid        = var.tenancy_ocid
   ssh_public_key      = var.ssh_public_key
   ssh_public_key_path = var.ssh_public_key_path
@@ -61,9 +61,6 @@ module "tvdlab-base" {
   bastion_shape            = var.bastion_shape
   bastion_bootstrap        = var.bastion_bootstrap
   bastion_state            = var.bastion_state
-  bastion_os               = var.bastion_os
-  bastion_os_version       = var.bastion_os_version
-  bastion_boot_volume_size = var.bastion_boot_volume_size
 
   # db host parameters
   db_host_enabled          = var.db_host_enabled
@@ -78,9 +75,4 @@ module "tvdlab-base" {
   db_host_boot_volume_size = var.db_host_boot_volume_size
 }
 
-# display public IPs of bastion hosts
-output "bastion_public_ip" {
-  description = "The public IP address of the bastion server instances."
-  value = module.tvdlab-base.bastion_public_ip
-}
 # --- EOF -------------------------------------------------------------------

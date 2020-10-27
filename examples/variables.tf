@@ -7,7 +7,7 @@
 # Editor.....: Stefan Oehrli
 # Date.......: 2020.10.12
 # Revision...: 
-# Purpose....: Variable file for the terraform module tvdlab base.
+# Purpose....: Variable definition for this terraform configuration
 # Notes......: -- 
 # Reference..: --
 # License....: Apache License Version 2.0, January 2004 as shown
@@ -15,6 +15,20 @@
 # ---------------------------------------------------------------------------
 
 # provider identity parameters ----------------------------------------------
+variable "user_ocid" {
+  description = "user OCID used to access OCI"
+  type        = string
+}
+variable "fingerprint" {
+  description = "Fingerprint for user"
+  type        = string
+}
+
+variable "private_key_path" {
+  description = "Private Key Path"
+  type        = string
+}
+
 variable "tenancy_ocid" {
   description = "tenancy id where to create the resources"
   type        = string
@@ -27,9 +41,20 @@ variable "region" {
 }
 
 # general oci parameters ----------------------------------------------------
+variable "base_compartment_ocid" {
+  description = "OCID of the base compartment where to create training compartment"
+  type        = string
+}
+
 variable "compartment_id" {
   description = "OCID of the compartment where to create all resources"
   type        = string
+}
+
+variable "compartment_delete_enabled" {
+  description = "Whether the compartment will be delete when running terraform destroy."
+  default     = false
+  type        = bool
 }
 
 variable "label_prefix" {
@@ -132,12 +157,6 @@ variable "bastion_image_id" {
   type        = string
 }
 
-variable "bastion_os" {
-  description = "Base OS for the bastion host."
-  default     = "Oracle Linux"
-  type        = string
-}
-
 variable "bastion_os_version" {
   description = "Define the default OS version for Oracle Linux."
   default     = "7.8"
@@ -146,14 +165,8 @@ variable "bastion_os_version" {
 
 variable "bastion_shape" {
   description = "The shape of bastion instance."
-  default     = "VM.Standard2.1"
+  default     = "VM.Standard.E2.1"
   type        = string
-}
-
-variable "bastion_boot_volume_size" {
-  description = "Size of the boot volume."
-  default     = 50
-  type        = number
 }
 
 variable "bastion_state" {
@@ -210,12 +223,6 @@ variable "db_host_image_id" {
   type        = string
 }
 
-variable "db_host_os" {
-  description = "Base OS for the bastion host."
-  default     = "Oracle Linux"
-  type        = string
-}
-
 variable "db_host_os_version" {
   description = "Define the default OS version for Oracle Linux."
   default     = "7.8"
@@ -242,6 +249,26 @@ variable "db_host_state" {
 variable "db_host_bootstrap" {
   description = "Bootstrap script."
   default     = ""
+  type        = string
+}
+
+# Datasource host specific parameter ---------------------------------------
+# these are used to determin the base images
+variable "host_os" {
+  description = "Base OS for Linux based OS."
+  default     = "Oracle Linux"
+  type        = string
+}
+
+variable "host_os_version" {
+  description = "Define the default OS version for Oracle Linux."
+  default     = "7.8"
+  type        = string
+}
+
+variable "host_shape" {
+  description = "The shape of compute instance."
+  default     = "VM.Standard2.1"
   type        = string
 }
 
