@@ -139,14 +139,14 @@ variable "bastion_os" {
 }
 
 variable "bastion_os_version" {
-  description = "Define the default OS version for Oracle Linux."
+  description = "Define Base OS version for the bastion host."
   default     = "7.8"
   type        = string
 }
 
 variable "bastion_shape" {
   description = "The shape of bastion instance."
-  default     = "VM.Standard2.1"
+  default     = "VM.Standard.E2.1"
   type        = string
 }
 
@@ -177,6 +177,71 @@ variable "ssh_public_key_path" {
   description = "path to the ssh public key used to access the bastion. set this or the ssh_public_key"
   default     = ""
   type        = string
+}
+
+variable "bastion_subnet" {
+  description = "List of subnets for the bastion hosts"
+  type        = list(string)
+}
+
+variable "hosts_file" {
+  description = "path to a custom /etc/hosts which has to be appended"
+  default     = ""
+  type        = string
+}
+
+variable "yum_upgrade" {
+  description = "Enable YUM upgrade during bootstrap / cloud-init"
+  default     = true
+  type        = bool
+}
+
+variable "guacamole_enabled" {
+  description = "whether to configure guacamole or not"
+  default     = true
+  type        = bool
+}
+
+variable "guacamole_connections" {
+  description = "path to a custom guacamole connections SQL script"
+  default     = ""
+  type        = string
+}
+
+variable "fail2ban_config" {
+  description = "path to a custom fail2ban configuration file"
+  default     = ""
+  type        = string
+}
+
+variable "guacamole_user" {
+  description = "Guacamole OS user name"
+  default     = "avocado"
+  type        = string
+}
+
+variable "guacadmin_user" {
+  description = "Guacamole console admin user"
+  default     = "guacadmin"
+  type        = string
+}
+
+variable "guacadmin_password" {
+  description = "Guacamole console admin user password. If password is empty it will be autogenerate during setup."
+  default     = ""
+  type        = string
+}
+
+variable "admin_email" {
+  description = "Admin email used to configure Let's encrypt."
+  default     = "admin@domain.com"
+  type        = string
+}
+
+variable "staging" {
+  description = "Set to 1 if you're testing your setup to avoid hitting request limits"
+  default     = 0
+  type        = number
 }
 
 # DB Host Parameter ----------------------------------------------------

@@ -7,7 +7,7 @@
 # Editor.....: Stefan Oehrli
 # Date.......: 2020.10.12
 # Revision...: 
-# Purpose....: Variable definition for this terraform configuration
+# Purpose....: Variable file for the terraform module tvdlab base.
 # Notes......: -- 
 # Reference..: --
 # License....: Apache License Version 2.0, January 2004 as shown
@@ -15,20 +15,6 @@
 # ---------------------------------------------------------------------------
 
 # provider identity parameters ----------------------------------------------
-variable "user_ocid" {
-  description = "user OCID used to access OCI"
-  type        = string
-}
-variable "fingerprint" {
-  description = "Fingerprint for user"
-  type        = string
-}
-
-variable "private_key_path" {
-  description = "Private Key Path"
-  type        = string
-}
-
 variable "tenancy_ocid" {
   description = "tenancy id where to create the resources"
   type        = string
@@ -41,20 +27,9 @@ variable "region" {
 }
 
 # general oci parameters ----------------------------------------------------
-variable "base_compartment_ocid" {
-  description = "OCID of the base compartment where to create training compartment"
-  type        = string
-}
-
 variable "compartment_id" {
   description = "OCID of the compartment where to create all resources"
   type        = string
-}
-
-variable "compartment_delete_enabled" {
-  description = "Whether the compartment will be delete when running terraform destroy."
-  default     = false
-  type        = bool
 }
 
 variable "label_prefix" {
@@ -157,8 +132,14 @@ variable "bastion_image_id" {
   type        = string
 }
 
+variable "bastion_os" {
+  description = "Base OS for the bastion host."
+  default     = "Oracle Linux"
+  type        = string
+}
+
 variable "bastion_os_version" {
-  description = "Define the default OS version for Oracle Linux."
+  description = "Define Base OS version for the bastion host."
   default     = "7.8"
   type        = string
 }
@@ -167,6 +148,12 @@ variable "bastion_shape" {
   description = "The shape of bastion instance."
   default     = "VM.Standard.E2.1"
   type        = string
+}
+
+variable "bastion_boot_volume_size" {
+  description = "Size of the boot volume."
+  default     = 50
+  type        = number
 }
 
 variable "bastion_state" {
@@ -190,6 +177,71 @@ variable "ssh_public_key_path" {
   description = "path to the ssh public key used to access the bastion. set this or the ssh_public_key"
   default     = ""
   type        = string
+}
+
+variable "bastion_subnet" {
+  description = "List of subnets for the bastion hosts"
+  type        = list(string)
+}
+
+variable "hosts_file" {
+  description = "path to a custom /etc/hosts which has to be appended"
+  default     = ""
+  type        = string
+}
+
+variable "yum_upgrade" {
+  description = "Enable YUM upgrade during bootstrap / cloud-init"
+  default     = true
+  type        = bool
+}
+
+variable "guacamole_enabled" {
+  description = "whether to configure guacamole or not"
+  default     = true
+  type        = bool
+}
+
+variable "guacamole_connections" {
+  description = "path to a custom guacamole connections SQL script"
+  default     = ""
+  type        = string
+}
+
+variable "fail2ban_config" {
+  description = "path to a custom fail2ban configuration file"
+  default     = ""
+  type        = string
+}
+
+variable "guacamole_user" {
+  description = "Guacamole OS user name"
+  default     = "avocado"
+  type        = string
+}
+
+variable "guacadmin_user" {
+  description = "Guacamole console admin user"
+  default     = "guacadmin"
+  type        = string
+}
+
+variable "guacadmin_password" {
+  description = "Guacamole console admin user password. If password is empty it will be autogenerate during setup."
+  default     = ""
+  type        = string
+}
+
+variable "admin_email" {
+  description = "Admin email used to configure Let's encrypt."
+  default     = "admin@domain.com"
+  type        = string
+}
+
+variable "staging" {
+  description = "Set to 1 if you're testing your setup to avoid hitting request limits"
+  default     = 0
+  type        = number
 }
 
 # DB Host Parameter ----------------------------------------------------
@@ -223,6 +275,12 @@ variable "db_host_image_id" {
   type        = string
 }
 
+variable "db_host_os" {
+  description = "Base OS for the bastion host."
+  default     = "Oracle Linux"
+  type        = string
+}
+
 variable "db_host_os_version" {
   description = "Define the default OS version for Oracle Linux."
   default     = "7.8"
@@ -249,26 +307,6 @@ variable "db_host_state" {
 variable "db_host_bootstrap" {
   description = "Bootstrap script."
   default     = ""
-  type        = string
-}
-
-# Datasource host specific parameter ---------------------------------------
-# these are used to determin the base images
-variable "host_os" {
-  description = "Base OS for Linux based OS."
-  default     = "Oracle Linux"
-  type        = string
-}
-
-variable "host_os_version" {
-  description = "Define the default OS version for Oracle Linux."
-  default     = "7.8"
-  type        = string
-}
-
-variable "host_shape" {
-  description = "The shape of compute instance."
-  default     = "VM.Standard2.1"
   type        = string
 }
 
