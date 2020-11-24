@@ -15,20 +15,6 @@
 # ---------------------------------------------------------------------------
 
 # provider identity parameters ----------------------------------------------
-variable "user_ocid" {
-  description = "user OCID used to access OCI"
-  type        = string
-}
-variable "fingerprint" {
-  description = "Fingerprint for user"
-  type        = string
-}
-
-variable "private_key_path" {
-  description = "Private Key Path"
-  type        = string
-}
-
 variable "tenancy_ocid" {
   description = "tenancy id where to create the resources"
   type        = string
@@ -41,11 +27,6 @@ variable "region" {
 }
 
 # general oci parameters ----------------------------------------------------
-variable "base_compartment_ocid" {
-  description = "OCID of the base compartment where to create training compartment"
-  type        = string
-}
-
 variable "compartment_id" {
   description = "OCID of the compartment where to create all resources"
   type        = string
