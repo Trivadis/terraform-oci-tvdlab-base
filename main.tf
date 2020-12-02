@@ -105,7 +105,7 @@ module "tvdlab-bastion" {
 # - ADD DB Module -----------------------------------------------------------
 module "tvdlab-db" {
   source  = "Trivadis/tvdlab-compute/oci"
-  version = ">=0.1.0"
+  version = ">=0.1.1"
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid   = var.tenancy_ocid
