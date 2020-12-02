@@ -105,7 +105,7 @@ module "tvdlab-bastion" {
 # - ADD DB Module -----------------------------------------------------------
 module "tvdlab-db" {
   source  = "Trivadis/tvdlab-compute/oci"
-  version = ">=0.0.7"
+  version = ">=0.1.0"
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid   = var.tenancy_ocid
@@ -139,6 +139,8 @@ module "tvdlab-db" {
   host_os               = var.db_host_os
   host_os_version       = var.db_host_os_version
   host_boot_volume_size = var.db_host_boot_volume_size
+  hosts_file            = var.hosts_file
+  yum_upgrade           = var.yum_upgrade
 }
 
 # --- EOF -------------------------------------------------------------------
