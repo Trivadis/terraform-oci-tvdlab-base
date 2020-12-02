@@ -58,7 +58,7 @@ module "tvdlab-vcn" {
 module "tvdlab-bastion" {
   source = "Trivadis/tvdlab-bastion/oci"
   #source = "../terraform-oci-tvdlab-bastion"
-  version = ">= 1.1.0"
+  version = ">= 1.1.1"
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid        = var.tenancy_ocid
