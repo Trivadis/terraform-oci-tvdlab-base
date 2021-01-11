@@ -86,6 +86,11 @@ output "bastion_dns_records" {
   value = module.tvdlab-bastion.bastion_dns_records
 }
 
+output "bastion_ssh_access" {
+  description = "SSH access string for bastion hosts."
+  value = module.tvdlab-bastion.bastion_ssh_access
+}
+
 # - Provide information on DB module ---------------------------------------
 output "db_host_id" {
   description = "OCID of the server instances."
