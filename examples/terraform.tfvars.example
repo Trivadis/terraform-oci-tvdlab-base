@@ -63,17 +63,20 @@ guacamole_connections     = ""
 staging                   = 1
 
 # Host Parameter ------------------------------------------------------------
-db_host_enabled              = false
-db_host_name                 = "db"
-db_host_public_ip            = false
-db_host_private_ip           = "10.0.1.6"
-db_host_image_id             = "OEL"
-db_host_os                   = "Oracle Linux"
-db_host_os_version           = "7.8"
-db_host_shape                = "VM.Standard2.2"
-db_host_boot_volume_size     = 150
-db_host_state                = "RUNNING"
-db_host_bootstrap            = ""
+db_host_enabled                 = false
+db_host_name                    = "db"
+db_host_public_ip               = false
+db_host_private_ip              = "10.0.1.6"
+db_host_image_id                = "OEL"
+db_host_os                      = "Oracle Linux"
+db_host_os_version              = "7.8"
+db_host_shape                   = "VM.Standard2.2"
+db_host_boot_volume_size        = 150
+db_host_volume_enabled          = false
+db_host_volume_attachment_type  = "paravirtualized"
+db_host_volume_size             = 256
+db_host_state                    = "RUNNING"
+db_host_bootstrap               = ""
 
 # Trivadis LAB specific parameter -------------------------------------------
 tvd_participants            = 1

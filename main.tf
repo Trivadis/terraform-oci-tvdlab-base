@@ -139,6 +139,9 @@ module "tvdlab-db" {
   host_os               = var.db_host_os
   host_os_version       = var.db_host_os_version
   host_boot_volume_size = var.db_host_boot_volume_size
+  host_volume_enabled   = var.db_host_volume_enabled
+  host_volume_attachment_type = var.db_host_volume_attachment_type
+  host_volume_size      = var.db_host_volume_size
   hosts_file            = var.hosts_file
   yum_upgrade           = var.yum_upgrade
 }
