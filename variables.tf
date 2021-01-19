@@ -186,7 +186,7 @@ variable "ssh_public_key_path" {
 }
 
 variable "hosts_file" {
-  description = "path to a custom /etc/hosts which has to be appended"
+  description = "Content of a custom host file which has to be appended to /etc/hosts"
   default     = ""
   type        = string
 }
