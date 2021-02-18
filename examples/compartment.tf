@@ -16,10 +16,10 @@
 
 # define the terraform provider
 resource "oci_identity_compartment" "lab_compartment" {
-    name           = var.resource_name
-    description    = "Training compartment ${var.resource_name} created by terraform"
-    compartment_id = var.base_compartment_ocid
-    # true will cause this compartment to be deleted when running `terrafrom destroy`
-    enable_delete  = var.compartment_delete_enabled                            
+  name           = var.resource_name
+  description    = "Training compartment ${var.resource_name} created by terraform"
+  compartment_id = var.base_compartment_ocid
+  # true will cause this compartment to be deleted when running `terrafrom destroy`
+  enable_delete = var.compartment_delete_enabled
 }
 # --- EOF -------------------------------------------------------------------

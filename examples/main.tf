@@ -34,9 +34,9 @@ module "tvdlab-base" {
   tvd_participants = var.tvd_participants
 
   # general oci parameters
-  ad_index            = var.ad_index
-  label_prefix        = var.label_prefix
-  tags                = var.tags
+  ad_index     = var.ad_index
+  label_prefix = var.label_prefix
+  tags         = var.tags
 
   # Trivadis LAB specific parameter 
   tvd_dns_hostnum = var.tvd_dns_hostnum
@@ -63,19 +63,19 @@ module "tvdlab-base" {
   bastion_state            = var.bastion_state
 
   # db host parameters
-  db_host_enabled                 = var.db_host_enabled
-  db_host_name                    = var.db_host_name
-  db_host_image_id                = var.db_host_image_id
-  db_host_shape                   = var.db_host_shape
-  db_host_bootstrap               = var.db_host_bootstrap
-  db_host_state                   = var.db_host_state
-  db_host_public_ip               = var.db_host_public_ip
-  db_host_private_ip              = var.db_host_private_ip
-  db_host_os_version              = var.db_host_os_version
-  db_host_boot_volume_size        = var.db_host_boot_volume_size
-  db_ost_volume_enabled           = var.db_host_volume_enabled
-  db_host_volume_attachment_type  = var.db_host_volume_attachment_type
-  db_host_volume_size             = var.db_host_volume_size
+  db_host_enabled                = var.db_host_enabled
+  db_host_name                   = var.db_host_name
+  db_host_image_id               = var.db_host_image_id
+  db_host_shape                  = var.db_host_shape
+  db_host_bootstrap              = var.db_host_bootstrap
+  db_host_state                  = var.db_host_state
+  db_host_public_ip              = var.db_host_public_ip
+  db_host_private_ip             = var.db_host_private_ip
+  db_host_os_version             = var.db_host_os_version
+  db_host_boot_volume_size       = var.db_host_boot_volume_size
+  db_ost_volume_enabled          = var.db_host_volume_enabled
+  db_host_volume_attachment_type = var.db_host_volume_attachment_type
+  db_host_volume_size            = var.db_host_volume_size
 }
 
 # --- EOF -------------------------------------------------------------------

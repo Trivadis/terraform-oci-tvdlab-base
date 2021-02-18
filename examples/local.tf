@@ -14,9 +14,9 @@
 #              at http://www.apache.org/licenses/
 # ---------------------------------------------------------------------------
 locals {
-  compartment_id      = var.compartment_id == "" ? oci_identity_compartment.lab_compartment.id : var.compartment_id
-  resource_name       = var.resource_name == "" ? oci_identity_compartment.lab_compartment.name : var.resource_name 
-  resource_shortname  = lower(replace(local.resource_name, "-", ""))
+  compartment_id     = var.compartment_id == "" ? oci_identity_compartment.lab_compartment.id : var.compartment_id
+  resource_name      = var.resource_name == "" ? oci_identity_compartment.lab_compartment.name : var.resource_name
+  resource_shortname = lower(replace(local.resource_name, "-", ""))
 }
 # --- EOF -------------------------------------------------------------------
 

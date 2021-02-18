@@ -64,27 +64,27 @@ variable "tags" {
 
 # VCN parameters ------------------------------------------------------------
 variable "internet_gateway_enabled" {
-    description = "whether to create the internet gateway"
-    default     = true
-    type        = bool
+  description = "whether to create the internet gateway"
+  default     = true
+  type        = bool
 }
 
 variable "nat_gateway_enabled" {
-    description = "whether to create a nat gateway in the vcn"
-    default     = true
-    type        = bool
+  description = "whether to create a nat gateway in the vcn"
+  default     = true
+  type        = bool
 }
 
 variable "service_gateway_enabled" {
-    description = "whether to create a service gateway"
-    default     = false
-    type        = bool
+  description = "whether to create a service gateway"
+  default     = false
+  type        = bool
 }
 
 variable "vcn_cidr" {
-    description = "cidr block of VCN"
-    default     = "10.0.0.0/16"
-    type        = string
+  description = "cidr block of VCN"
+  default     = "10.0.0.0/16"
+  type        = string
 }
 
 # Public Subnet parameters --------------------------------------------------
@@ -331,32 +331,32 @@ variable "db_host_bootstrap" {
 
 # Trivadis LAB specific parameter -------------------------------------------
 variable "tvd_participants" {
-    description = "The number of VCNs to create"
-    type        = number
-    default     = 1
+  description = "The number of VCNs to create"
+  type        = number
+  default     = 1
 }
 
-variable "tvd_domain" {   
-    description = "The domain name of the LAB environment"
-    type        = string
-    default     = "trivadislabs.com" 
+variable "tvd_domain" {
+  description = "The domain name of the LAB environment"
+  type        = string
+  default     = "trivadislabs.com"
 }
 
-variable "tvd_dns_hostnum" {   
-    description = "The host number for the Trivadis LAB DNS server. This number is used to build the IP address using cidrhost function"
-    type        = number
-    default     = 4
+variable "tvd_dns_hostnum" {
+  description = "The host number for the Trivadis LAB DNS server. This number is used to build the IP address using cidrhost function"
+  type        = number
+  default     = 4
 }
 
-variable "tvd_private_dns" {   
-    description = "A private DNS IP address for the training environment"
-    type        = string
-    default     = "default" 
+variable "tvd_private_dns" {
+  description = "A private DNS IP address for the training environment"
+  type        = string
+  default     = "default"
 }
 
-variable "tvd_public_dns" {   
-    description = "A public DNS IP address for the training environment"
-    type        = string
-    default     = "8.8.8.8" 
+variable "tvd_public_dns" {
+  description = "A public DNS IP address for the training environment"
+  type        = string
+  default     = "8.8.8.8"
 }
 # --- EOF -------------------------------------------------------------------

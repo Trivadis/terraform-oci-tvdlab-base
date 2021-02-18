@@ -64,27 +64,27 @@ variable "tags" {
 
 # VCN parameters ------------------------------------------------------------
 variable "internet_gateway_enabled" {
-    description = "whether to create the internet gateway"
-    default     = true
-    type        = bool
+  description = "whether to create the internet gateway"
+  default     = true
+  type        = bool
 }
 
 variable "nat_gateway_enabled" {
-    description = "whether to create a nat gateway in the vcn"
-    default     = true
-    type        = bool
+  description = "whether to create a nat gateway in the vcn"
+  default     = true
+  type        = bool
 }
 
 variable "service_gateway_enabled" {
-    description = "whether to create a service gateway"
-    default     = false
-    type        = bool
+  description = "whether to create a service gateway"
+  default     = false
+  type        = bool
 }
 
 variable "vcn_cidr" {
-    description = "cidr block of VCN"
-    default     = "10.0.0.0/16"
-    type        = string
+  description = "cidr block of VCN"
+  default     = "10.0.0.0/16"
+  type        = string
 }
 
 # Public Subnet parameters --------------------------------------------------
@@ -132,6 +132,18 @@ variable "bastion_name" {
   type        = string
 }
 
+variable "webhost_name" {
+  description = "web host name used configure nginx / dns"
+  default     = ""
+  type        = string
+}
+
+variable "webproxy_name" {
+  description = "web proxy name used configure nginx"
+  default     = ""
+  type        = string
+}
+
 variable "bastion_image_id" {
   description = "Provide a custom image id for the bastion host or leave as OEL (Oracle Enterprise Linux)."
   default     = "OEL"
@@ -152,8 +164,20 @@ variable "bastion_os_version" {
 
 variable "bastion_shape" {
   description = "The shape of bastion instance."
-  default     = "VM.Standard.E2.1"
+  default     = "VM.Standard.E3.Flex"
   type        = string
+}
+
+variable "bastion_ocpus" {
+  description = "The ocpus for the shape."
+  default     = 1
+  type        = number
+}
+
+variable "bastion_memory_in_gbs" {
+  description = "The memory in gbs for the shape."
+  default     = 8
+  type        = number
 }
 
 variable "bastion_boot_volume_size" {
@@ -167,8 +191,8 @@ variable "bastion_state" {
   default     = "RUNNING"
 }
 
-variable "bastion_bootstrap" {
-  description = "Bootstrap script."
+variable "bootstrap_cloudinit_template" {
+  description = "Bootstrap script. If left out, it will use the embedded cloud-init configuration to boot the bastion host."
   default     = ""
   type        = string
 }
@@ -209,8 +233,8 @@ variable "guacamole_connections" {
   type        = string
 }
 
-variable "fail2ban_config" {
-  description = "path to a custom fail2ban configuration file"
+variable "fail2ban_template" {
+  description = "path to a fail2ban configuration template file"
   default     = ""
   type        = string
 }
@@ -331,32 +355,32 @@ variable "db_host_bootstrap" {
 
 # Trivadis LAB specific parameter -------------------------------------------
 variable "tvd_participants" {
-    description = "The number of VCNs to create"
-    type        = number
-    default     = 1
+  description = "The number of VCNs to create"
+  type        = number
+  default     = 1
 }
 
-variable "tvd_domain" {   
-    description = "The domain name of the LAB environment"
-    type        = string
-    default     = "trivadislabs.com" 
+variable "tvd_domain" {
+  description = "The domain name of the LAB environment"
+  type        = string
+  default     = "trivadislabs.com"
 }
 
-variable "tvd_dns_hostnum" {   
-    description = "The host number for the Trivadis LAB DNS server. This number is used to build the IP address using cidrhost function"
-    type        = number
-    default     = 4
+variable "tvd_dns_hostnum" {
+  description = "The host number for the Trivadis LAB DNS server. This number is used to build the IP address using cidrhost function"
+  type        = number
+  default     = 4
 }
 
-variable "tvd_private_dns" {   
-    description = "A private DNS IP address for the training environment"
-    type        = string
-    default     = "default" 
+variable "tvd_private_dns" {
+  description = "A private DNS IP address for the training environment"
+  type        = string
+  default     = "default"
 }
 
-variable "tvd_public_dns" {   
-    description = "A public DNS IP address for the training environment"
-    type        = string
-    default     = "8.8.8.8" 
+variable "tvd_public_dns" {
+  description = "A public DNS IP address for the training environment"
+  type        = string
+  default     = "8.8.8.8"
 }
 # --- EOF -------------------------------------------------------------------
